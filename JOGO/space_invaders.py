@@ -106,6 +106,7 @@ def jogo():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
+                
             if event.type == KEYDOWN:
                 if event.key == K_LEFT:
                     jogador.movimentoEsquerda()
