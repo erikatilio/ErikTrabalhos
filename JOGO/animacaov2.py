@@ -5,6 +5,7 @@ from sys import *
 import time
 import os
 
+
 pygame.init()
 
 
@@ -26,7 +27,7 @@ def animacao():
         audio = pygame.mixer.Sound('audios/cutsceneaudio.ogg')
         audio.play()
 
-        ship_filename = 'imagens/nave01.png'
+        ship_filename = 'imagens/nave.png'
         ship = pygame.image.load(ship_filename).convert_alpha()
 
         text_name = 'imagens/text.png'
@@ -41,7 +42,7 @@ def animacao():
         enemy3_filename = 'imagens/alien03.png'
         enemy3 = pygame.image.load(enemy3_filename).convert_alpha()
 
-        enemy4_filename = 'imagens/nave02.png'
+        enemy4_filename = 'imagens/nave2.png'
         enemy4 = pygame.image.load(enemy4_filename).convert_alpha()
 
         pygame.display.set_caption("Hello World")
