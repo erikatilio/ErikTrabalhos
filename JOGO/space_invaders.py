@@ -4,34 +4,29 @@ from pygame.locals import  *
 altura = 400
 largura = 900
 
+aliens = pygame.sprite.Group()
+fire = pygame.sprite.Group()
+
 class inimigo(pygame.sprite.Sprite):
     def __init__(self,posx,posy):
         pygame.sprite.Sprite.__init__(self)
         self.imagem1 = pygame.image.load("imagens/alien01.png")
-        self.imagem2 = pygame.image.load("imagens/alien02.png")
-        self.imagem3 = pygame.image.load("imagens/alien03.png")
-        self.imagem4 = pygame.image.load("imagens/nave2.png")
 
-        self.listaImagens = [self.imagem1,self.imagem2,self.imagem3,self.imagem4]
+
+        self.listaImagens = self.imagem1
         self.posImagem = 0
-        self.ImagemAlien = self.listaImagens[self.posImagem]
+        self.ImagemAlien = self.listaImagens
 
         self.rect = self.ImagemAlien.get_rect()
+        self.add(aliens)
         self.lista_disparo = []
         self.velocidade= 20
         self.rect.top = posy
         self.rect.left = posx
         self.configTempo = 1
 
-    def comportamento(self,tempo):
-        if self.configTempo < tempo:
-            self.posImagem += 1
-            self.configTempo += 1
-            if self.posImagem > len(self.listaImagens)-1:
-                self.posImagem = 0
-
     def colocar(self,superficie):
-        self.ImagemAlien = self.listaImagens[self.posImagem]
+        self.ImagemAlien = self.listaImagens
         superficie.blit(self.ImagemAlien, self.rect)
 
 class bala(pygame.sprite.Sprite):
@@ -39,6 +34,7 @@ class bala(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.imagemBala = pygame.image.load("imagens/naveBala.png")
         self.rect = self.imagemBala.get_rect()
+        self.add(fire)
         self.velocidadeBala = 20
         self.rect.top = posy
         self.rect.left = posx
@@ -106,7 +102,6 @@ def jogo():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-                
             if event.type == KEYDOWN:
                 if event.key == K_LEFT:
                     jogador.movimentoEsquerda()
@@ -118,7 +113,6 @@ def jogo():
 
         tela.blit(imagemFundo,(0,0))
         jogador.colocar(tela)
-        invasor.comportamento(tempo)
         invasor.colocar(tela)
 
         if len(jogador.lista_disparo) > 0:
@@ -127,6 +121,12 @@ def jogo():
                 x.trajetoria()
                 if x.rect.top < -10:
                     jogador.lista_disparo.remove(x)
-                pygame.display.update()
+                if x.rect.colliderect(invasor):
+                    for explosao in pygame.sprite.spritecollide(x,aliens,True):
+                        posx = invasor.rect.left
+                        posy = invasor.rect.top
+                        boom = pygame.image.load("imagens/explosao.png")
+                        tela.blit(boom,(posx,posy))
+        pygame.display.update()
     pygame.quit()
 jogo()
