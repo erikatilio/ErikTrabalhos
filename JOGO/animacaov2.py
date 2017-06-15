@@ -23,7 +23,7 @@ def animacao():
         background_name = 'imagens/bg_scene.png'
         background = pygame.image.load(background_name).convert()
 
-        audio = pygame.mixer.Sound('audios/Onepunch_Man_-_The_Hero_FULL_8bit_mix_.ogg')
+        audio = pygame.mixer.Sound('audios/cutsceneaudio.ogg')
         audio.play()
 
         ship_filename = 'imagens/nave01.png'
