@@ -8,15 +8,13 @@ listaInimigos = []
 
 
 class inimigo(pygame.sprite.Sprite):
-    def __init__(self,posx,posy,distancia,imagemUm,imagemDois,imagemTres,imagemQuatro):
+    def __init__(self,posx,posy,distancia,imagemUm):
         pygame.sprite.Sprite.__init__(self)
         self.imagem1 = pygame.image.load(imagemUm)
-        self.imagem2 = pygame.image.load(imagemDois)
-        self.imagem3 = pygame.image.load(imagemTres)
-        self.imagem4 = pygame.image.load(imagemQuatro)
 
 
-        self.listaImagens = [self.imagem1,self.imagem2,self.imagem3,self.imagem4]
+
+        self.listaImagens = [self.imagem1]
         self.posImagem = 0
         self.ImagemAlien = self.listaImagens[self.posImagem]
 
@@ -62,6 +60,8 @@ class inimigo(pygame.sprite.Sprite):
     def __descendo(self):
         if self.maxDescida == self.rect.top:
             self.contador = 0
+            self.maxDescida = self.rect.top + 40
+
         else:
             self.rect.top += 1
 
@@ -131,8 +131,21 @@ class nave_espacial(pygame.sprite.Sprite):
     def colocar(self,superficie):
         superficie.blit(self.imagemNave, self.rect)
 def carregarInimigos():
-    invasor = inimigo(50,30,50,"imagens/alien01.png","imagens/alien02.png","imagens/alien03.png","imagens/nave2.png")
-    listaInimigos.append(invasor)
+    posx = 100
+    for x in range(1,5):
+        invasor = inimigo(posx,100,50,"imagens/alien01.png")
+        listaInimigos.append(invasor)
+        posx += 200
+    posx = 100
+    for x in range(1, 5):
+        invasor = inimigo(posx, 0, 50,"imagens/alien02.png")
+        listaInimigos.append(invasor)
+        posx += 200
+    posx = 100
+    for x in range(1, 5):
+        invasor = inimigo(posx, -100, 50,"imagens/alien03.png")
+        listaInimigos.append(invasor)
+        posx += 200
 
 def jogo():
     pygame.init()
