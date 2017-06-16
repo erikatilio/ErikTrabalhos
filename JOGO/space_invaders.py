@@ -6,6 +6,11 @@ altura = 400
 largura = 900
 listaInimigos = []
 
+def paraTudo():
+    for inimigo in listaInimigos:
+        for disparo in inimigo.lista_disparoInimigo:
+            inimigo.lista_disparoInimigo.remove(disparo)
+        inimigo.venceu = True
 
 class inimigo(pygame.sprite.Sprite):
     def __init__(self,posx,posy,distancia,imagemUm):
@@ -30,15 +35,17 @@ class inimigo(pygame.sprite.Sprite):
         self.maxDescida = self.rect.top + 40
         self.limitedireita = posx + distancia
         self.limiteEsquerda = posx - distancia
+        self.venceu = False
 
     def comportamento(self,tempo):
-        self.__movimentos()
-        self.__ataque()
-        if self.configTempo < tempo:
-            self.posImagem += 1
-            self.configTempo += 1
-            if self.posImagem > len(self.listaImagens)-1:
-                self.posImagem = 0
+        if self.venceu == False:
+            self.__movimentos()
+            self.__ataque()
+            if self.configTempo < tempo:
+                self.posImagem += 1
+                self.configTempo += 1
+                if self.posImagem > len(self.listaImagens)-1:
+                    self.posImagem = 0
 
     def __movimentos(self):
         if self.contador < 3:
@@ -199,22 +206,22 @@ def jogo():
             for invasor in listaInimigos:
                 invasor.comportamento(tempo)
                 invasor.colocar(tela)
-                if inimigo.rect.colliderect(jogador.rect):
-                    print("perdeu")
+                if invasor.rect.colliderect(jogador.rect):
+                    paraTudo()
 
                 if len(invasor.lista_disparoInimigo) > 0:
                     for x in invasor.lista_disparoInimigo:
                         x.colocar(tela)
                         x.trajetoria()
                         if x.rect.colliderect(jogador.rect):
-                            print("perdeu")
+                            paraTudo()
                         if x.rect.top > 900:
                             invasor.lista_disparoInimigo.remove(x)
                         else:
                             for disparo in jogador.lista_disparo:
                                 if x.rect.colliderect(disparo.rect):
                                     jogador.lista_disparo.remove(disparo)
-                                    inimigo.lista_disparoInimigo.remove(x)
+                                    invasor.lista_disparoInimigo.remove(x)
 
         pygame.display.flip()
     pygame.quit()
