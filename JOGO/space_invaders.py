@@ -71,7 +71,7 @@ class inimigo(pygame.sprite.Sprite):
         superficie.blit(self.ImagemAlien, self.rect)
 
     def __ataque(self):
-        if (randint(0,100)<self.quantidadeDisparo):
+        if (randint(3,300)<self.quantidadeDisparo):
             self.__disparo()
 
     def __disparo(self):
@@ -189,6 +189,11 @@ def jogo():
                 x.trajetoria()
                 if x.rect.top < -10:
                     jogador.lista_disparo.remove(x)
+                else:
+                    for inimigo in listaInimigos:
+                        if x.rect.colliderect(inimigo.rect):
+                            listaInimigos.remove(inimigo)
+                            jogador.lista_disparo.remove(x)
 
         if len(listaInimigos) > 0:
             for invasor in listaInimigos:
