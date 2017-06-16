@@ -199,13 +199,22 @@ def jogo():
             for invasor in listaInimigos:
                 invasor.comportamento(tempo)
                 invasor.colocar(tela)
+                if inimigo.rect.colliderect(jogador.rect):
+                    print("perdeu")
 
                 if len(invasor.lista_disparoInimigo) > 0:
                     for x in invasor.lista_disparoInimigo:
                         x.colocar(tela)
                         x.trajetoria()
+                        if x.rect.colliderect(jogador.rect):
+                            print("perdeu")
                         if x.rect.top > 900:
                             invasor.lista_disparoInimigo.remove(x)
+                        else:
+                            for disparo in jogador.lista_disparo:
+                                if x.rect.colliderect(disparo.rect):
+                                    jogador.lista_disparo.remove(disparo)
+                                    inimigo.lista_disparoInimigo.remove(x)
 
         pygame.display.flip()
     pygame.quit()
