@@ -4,15 +4,17 @@ from random import randint
 
 altura = 400
 largura = 900
+listaInimigos = []
 
 
 class inimigo(pygame.sprite.Sprite):
-    def __init__(self,posx,posy):
+    def __init__(self,posx,posy,distancia,imagemUm,imagemDois,imagemTres,imagemQuatro):
         pygame.sprite.Sprite.__init__(self)
-        self.imagem1 = pygame.image.load("imagens/alien01.png")
-        self.imagem2 = pygame.image.load("imagens/alien02.png")
-        self.imagem3 = pygame.image.load("imagens/alien03.png")
-        self.imagem4 = pygame.image.load("imagens/nave2.png")
+        self.imagem1 = pygame.image.load(imagemUm)
+        self.imagem2 = pygame.image.load(imagemDois)
+        self.imagem3 = pygame.image.load(imagemTres)
+        self.imagem4 = pygame.image.load(imagemQuatro)
+
 
         self.listaImagens = [self.imagem1,self.imagem2,self.imagem3,self.imagem4]
         self.posImagem = 0
@@ -20,19 +22,49 @@ class inimigo(pygame.sprite.Sprite):
 
         self.rect = self.ImagemAlien.get_rect()
         self.lista_disparoInimigo = []
-        self.velocidade= 20
+        self.velocidade= 10
         self.rect.top = posy
         self.rect.left = posx
         self.configTempo = 1
         self.quantidadeDisparo = 5
+        self.contador = 0
+        self.direita = True
+        self.maxDescida = self.rect.top + 40
+        self.limitedireita = posx + distancia
+        self.limiteEsquerda = posx - distancia
 
     def comportamento(self,tempo):
+        self.__movimentos()
         self.__ataque()
         if self.configTempo < tempo:
             self.posImagem += 1
             self.configTempo += 1
             if self.posImagem > len(self.listaImagens)-1:
                 self.posImagem = 0
+
+    def __movimentos(self):
+        if self.contador < 3:
+            self.__movimentoLateral()
+        else:
+            self.__descendo()
+
+    def __movimentoLateral(self):
+        if self.direita == True:
+            self.rect.left += self.velocidade
+            if self.rect.left > self.limitedireita:
+                self.direita = False
+                self.contador += 1
+        else:
+            self.rect.left -= self.velocidade
+            if self.rect.left < self.limiteEsquerda:
+                self.direita = True
+
+    def __descendo(self):
+        if self.maxDescida == self.rect.top:
+            self.contador = 0
+        else:
+            self.rect.top += 1
+
 
     def colocar(self,superficie):
         self.ImagemAlien = self.listaImagens[self.posImagem]
@@ -98,18 +130,19 @@ class nave_espacial(pygame.sprite.Sprite):
 
     def colocar(self,superficie):
         superficie.blit(self.imagemNave, self.rect)
+def carregarInimigos():
+    invasor = inimigo(50,30,50,"imagens/alien01.png","imagens/alien02.png","imagens/alien03.png","imagens/nave2.png")
+    listaInimigos.append(invasor)
 
 def jogo():
     pygame.init()
 
     tela = pygame.display.set_mode([largura,altura])
     pygame.display.set_caption("SPACE INVADERS")
-
     jogador = nave_espacial()
-    invasor = inimigo(100,50)
-
     imagemFundo = pygame.image.load("imagens/cenario.jpg")
     jogando = True
+    carregarInimigos()
     relogio = pygame.time.Clock()
     #tiro = bala(largura / 2,altura - 20)
     audio = pygame.mixer.Sound("audios/intro4.ogg")
@@ -136,8 +169,6 @@ def jogo():
 
         tela.blit(imagemFundo,(0,0))
         jogador.colocar(tela)
-        invasor.comportamento(tempo)
-        invasor.colocar(tela)
 
         if len(jogador.lista_disparo) > 0:
             for x in jogador.lista_disparo:
@@ -146,12 +177,17 @@ def jogo():
                 if x.rect.top < -10:
                     jogador.lista_disparo.remove(x)
 
-        if len(invasor.lista_disparoInimigo) > 0:
-            for x in invasor.lista_disparoInimigo:
-                x.colocar(tela)
-                x.trajetoria()
-                if x.rect.top > 900:
-                    invasor.lista_disparoInimigo.remove(x)
+        if len(listaInimigos) > 0:
+            for invasor in listaInimigos:
+                invasor.comportamento(tempo)
+                invasor.colocar(tela)
+
+                if len(invasor.lista_disparoInimigo) > 0:
+                    for x in invasor.lista_disparoInimigo:
+                        x.colocar(tela)
+                        x.trajetoria()
+                        if x.rect.top > 900:
+                            invasor.lista_disparoInimigo.remove(x)
 
         pygame.display.flip()
     pygame.quit()
