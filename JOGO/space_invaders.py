@@ -175,7 +175,7 @@ def jogo():
     pygame.init()
 
     tela = pygame.display.set_mode([largura,altura])
-    pygame.display.set_caption("SPACE INVADERS")
+    pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
     jogador = nave_espacial()
     imagemFundo = pygame.image.load("imagens/cenario.jpg")
     fim = pygame.image.load("imagens/GameOver.png")
@@ -184,7 +184,8 @@ def jogo():
     jogando = True
     carregarInimigos()
     relogio = pygame.time.Clock()
-    audio = pygame.mixer.Sound("audios/intro4.ogg")
+    pygame.mixer.music.stop()
+    audio = pygame.mixer.Sound("audios/intro2.ogg")
     audio.play()
     audio.set_volume(1)
 

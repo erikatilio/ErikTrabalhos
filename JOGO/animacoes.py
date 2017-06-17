@@ -22,7 +22,7 @@ def introduçao():
 
         clock = pygame.time.Clock()
 
-        pygame.display.set_caption("SPACE INVADERS")
+        pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
 
         x = -400
         secs = 0
@@ -64,7 +64,7 @@ def introduçao():
 
         clock = pygame.time.Clock()
 
-        pygame.display.set_caption("SPACE INVADERS")
+        pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
 
         pygame.mixer.music.load('audios/pygame.ogg')
         pygame.mixer.music.play()
@@ -120,7 +120,7 @@ def introduçao():
         enemy4_filename = 'imagens/nave2.png'
         enemy4 = pygame.image.load(enemy4_filename).convert_alpha()
 
-        pygame.display.set_caption("SPACE INVADERS")
+        pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
 
         clock = pygame.time.Clock()
         y = 500
@@ -177,6 +177,8 @@ def introduçao():
     logo()
     pygame_logo()
     animacao()
+    pygame.mixer.music.stop()
+    pygame.time.wait(350)
 
 
 def creditos():
@@ -192,8 +194,9 @@ def creditos():
 
     clock = pygame.time.Clock()
 
-    pygame.display.set_caption("SPACE INVADERS")
+    pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
 
+    pygame.mixer.music.stop()
     pygame.mixer.music.load('audios/creditos.ogg')
     pygame.mixer.music.play()
 
@@ -245,7 +248,7 @@ def loading():
 
     clock = pygame.time.Clock()
 
-    pygame.display.set_caption("SPACE INVADERS")
+    pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
 
     x = -400
 
