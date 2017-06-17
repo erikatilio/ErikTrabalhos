@@ -6,6 +6,11 @@ altura = 400
 largura = 900
 listaInimigos = []
 
+def reiniciar(tecla,comando):
+    if tecla and KMOD_CTRL:
+        if tecla[K_r]:
+            jogo()
+
 def paraTudo():
     for inimigo in listaInimigos:
         for disparo in inimigo.lista_disparoInimigo:
@@ -109,6 +114,8 @@ class nave_espacial(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.imagemNave = pygame.image.load("imagens/nave.png")
+        self.imagemExplosao = pygame.image.load("imagens/explosao.png")
+        self.boom = pygame.mixer.Sound("audios/boom.ogg")
 
         self.rect = self.imagemNave.get_rect()
         self.rect.centerx = largura/2
@@ -118,9 +125,16 @@ class nave_espacial(pygame.sprite.Sprite):
         self.vida = True
         self.velocidade = 25
 
+    def destruicao(self):
+        self.boom.play()
+        self.vida = False
+        self.velocidade = 0
+        self.imagemNave = self.imagemExplosao
+
     def movimentoDireita(self):
         self.rect.right += self.velocidade
         self.__movimento()
+
     def movimentoEsquerda(self):
         self.rect.left -= self.velocidade
         self.__movimento()
@@ -133,8 +147,9 @@ class nave_espacial(pygame.sprite.Sprite):
                 self.rect.right = 900
 
     def disparo(self,x,y):
-        minhaBala = bala(x,y,"imagens/naveBala.png",True)
-        self.lista_disparo.append(minhaBala)
+        if self.vida == True:
+            minhaBala = bala(x,y,"imagens/naveBala.png",True)
+            self.lista_disparo.append(minhaBala)
 
     def colocar(self,superficie):
         superficie.blit(self.imagemNave, self.rect)
@@ -164,6 +179,8 @@ def jogo():
     jogador = nave_espacial()
     imagemFundo = pygame.image.load("imagens/cenario.jpg")
     fim = pygame.image.load("imagens/GameOver.png")
+    win = pygame.image.load("imagens/win.png")
+
     jogando = True
     carregarInimigos()
     relogio = pygame.time.Clock()
@@ -203,6 +220,12 @@ def jogo():
                             listaInimigos.remove(inimigo)
                             jogador.lista_disparo.remove(x)
 
+        if len(listaInimigos) == 0:
+            reiniciar(pygame.key.get_pressed(),pygame.key.get_mods())
+            audio.stop()
+            tela.blit(win,(0,0))
+            paraTudo()
+
         if len(listaInimigos) > 0:
             for invasor in listaInimigos:
                 invasor.comportamento(tempo)
@@ -216,6 +239,7 @@ def jogo():
                         x.colocar(tela)
                         x.trajetoria()
                         if x.rect.colliderect(jogador.rect):
+                            jogador.destruicao()
                             jogando = False
                             paraTudo()
                         if x.rect.top > 900:
