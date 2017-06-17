@@ -182,6 +182,8 @@ def introduçao():
 def creditos():
     screen = pygame.display.set_mode((900, 400))
 
+    cor_yell = (255, 255, 0)
+
     creditos_name = 'imagens/creditos.png'
     creditos = pygame.image.load(creditos_name).convert_alpha()
 
@@ -204,17 +206,25 @@ def creditos():
         for event in pygame.event.get():
             if event.type == QUIT:
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    pygame.mixer.music.stop()
+                    argument = False
 
         screen.blit(pygame.Surface(screen.get_size()), (0, 0), )
         screen.blit(background, (0, y_bg))
         screen.blit(creditos, (0, y_cd))
+        pygame.font.init()
+        fonte_name = 'fonte/cosmic.ttf'
+        fonte_presstback = pygame.font.Font(fonte_name, 10)
+        press_to_back = fonte_presstback.render("Pressione Espaco para voltar", 1, (cor_yell))
+        screen.blit(press_to_back, (0, 0))
 
         if y_bg <= 200:
             y_bg += 40
 
         if y_bg >= 200:
             y_bg = -6000
-        print("by",y_cd)
 
         y_cd -= 0.5
 
@@ -223,7 +233,6 @@ def creditos():
 
         time_passed = clock.tick(60)
         pygame.display.update()
-
 
 def loading():
     screen = pygame.display.set_mode((900, 400))
@@ -256,6 +265,3 @@ def loading():
 
         time_passed = clock.tick(60)
         pygame.display.update()
-
-
-

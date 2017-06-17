@@ -1,7 +1,8 @@
 import pygame
 from animacoes import *
 from cronometro import *
-
+from space_invaders import *
+from instrucoes import *
 
 def menu():
     pygame.init()
@@ -56,15 +57,27 @@ def menu():
         tela.blit(text4,(310, 300))
         tela.blit(text5,(475, 300))
         tela.blit(text6,(620, 300))
-        y_bg -= 0.05
+        y_bg -= 0.15
 
-        if y_bg < -1600:
-            introduçao()
-            y_bg = 0
+        mouse = pygame.mouse.get_pos()
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if mouse[0] >= 475 and mouse[1] >= 300:
+                if mouse[0] <= 595 and mouse[1] <= 320:
+                    creditos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if mouse[0] >= 620 and mouse[1] >= 300:
+                if mouse[0] <= 680 and mouse[1] <= 320:
+                    break
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if mouse[0] >= 210 and mouse[1] >= 300:
+                if mouse[0] <= 285 and mouse[1] <= 320:
+                    jogo()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if mouse[0] >= 310 and mouse[1] >= 300:
+                if mouse[0] <= 430 and mouse[1] <= 320:
+                    instrucoes()
 
         pygame.display.update()
-
-
     pygame.quit()
-
-
+menu()

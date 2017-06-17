@@ -189,7 +189,7 @@ def jogo():
     audio.set_volume(1)
 
     while True:
-        relogio.tick(200)
+        relogio.tick(30)
         tempo = int(pygame.time.get_ticks()/1000)
 
         for event in pygame.event.get():
@@ -254,4 +254,3 @@ def jogo():
             audio.stop()
         pygame.display.flip()
     pygame.quit()
-jogo()
