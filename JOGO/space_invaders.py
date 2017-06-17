@@ -13,13 +13,13 @@ def paraTudo():
         inimigo.venceu = True
 
 class inimigo(pygame.sprite.Sprite):
-    def __init__(self,posx,posy,distancia,imagemUm):
+    def __init__(self,posx,posy,distancia,imagemUm,imagemDois):
         pygame.sprite.Sprite.__init__(self)
         self.imagem1 = pygame.image.load(imagemUm)
+        self.imagem2 = pygame.image.load(imagemDois)
 
 
-
-        self.listaImagens = [self.imagem1]
+        self.listaImagens = [self.imagem1,self.imagem2]
         self.posImagem = 0
         self.ImagemAlien = self.listaImagens[self.posImagem]
 
@@ -109,6 +109,7 @@ class nave_espacial(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.imagemNave = pygame.image.load("imagens/nave.png")
+
         self.rect = self.imagemNave.get_rect()
         self.rect.centerx = largura/2
         self.rect.centery = altura - 30
@@ -137,20 +138,21 @@ class nave_espacial(pygame.sprite.Sprite):
 
     def colocar(self,superficie):
         superficie.blit(self.imagemNave, self.rect)
+
 def carregarInimigos():
     posx = 100
     for x in range(1,5):
-        invasor = inimigo(posx,100,50,"imagens/alien01.png")
+        invasor = inimigo(posx,100,50,"imagens/alien01.png","imagens/alien01(2).png")
         listaInimigos.append(invasor)
         posx += 200
     posx = 100
     for x in range(1, 5):
-        invasor = inimigo(posx, 0, 50,"imagens/alien02.png")
+        invasor = inimigo(posx, 0, 50,"imagens/alien02.png","imagens/alien02(2).png")
         listaInimigos.append(invasor)
         posx += 200
     posx = 100
     for x in range(1, 5):
-        invasor = inimigo(posx, -100, 50,"imagens/alien03.png")
+        invasor = inimigo(posx, -100, 50,"imagens/alien03.png","imagens/alien03(2).png")
         listaInimigos.append(invasor)
         posx += 200
 
@@ -161,10 +163,10 @@ def jogo():
     pygame.display.set_caption("SPACE INVADERS")
     jogador = nave_espacial()
     imagemFundo = pygame.image.load("imagens/cenario.jpg")
+    fim = pygame.image.load("imagens/GameOver.png")
     jogando = True
     carregarInimigos()
     relogio = pygame.time.Clock()
-    #tiro = bala(largura / 2,altura - 20)
     audio = pygame.mixer.Sound("audios/intro4.ogg")
     audio.play()
     audio.set_volume(1)
@@ -172,7 +174,6 @@ def jogo():
     while True:
         relogio.tick(200)
         tempo = int(pygame.time.get_ticks()/1000)
-        #tiro.trajetoria()
 
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -207,6 +208,7 @@ def jogo():
                 invasor.comportamento(tempo)
                 invasor.colocar(tela)
                 if invasor.rect.colliderect(jogador.rect):
+                    jogando = False
                     paraTudo()
 
                 if len(invasor.lista_disparoInimigo) > 0:
@@ -214,6 +216,7 @@ def jogo():
                         x.colocar(tela)
                         x.trajetoria()
                         if x.rect.colliderect(jogador.rect):
+                            jogando = False
                             paraTudo()
                         if x.rect.top > 900:
                             invasor.lista_disparoInimigo.remove(x)
@@ -222,7 +225,9 @@ def jogo():
                                 if x.rect.colliderect(disparo.rect):
                                     jogador.lista_disparo.remove(disparo)
                                     invasor.lista_disparoInimigo.remove(x)
-
+        if jogando == False:
+            tela.blit(fim,(0,0))
+            audio.stop()
         pygame.display.flip()
     pygame.quit()
 jogo()
