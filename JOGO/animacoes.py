@@ -33,20 +33,24 @@ def introduçao():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        pygame.mixer.music.stop()
+                        argument = False
 
             screen.blit(pygame.Surface(screen.get_size()), (0, 0), )
             screen.blit(logo, (x, 50))
             screen.blit(presents, (0, y_txt))
 
-            if x <= 200:
-                x += 43
-                y_txt -= 5
+            if x < 120:
+                y_txt -= 3
+                x += 40
 
-            if x >= 200 and secs == 0:
-                secs = cronometro(3)
+            if x >= 120 and secs < 180:
+                secs += 1
 
-            if secs == 3:
-                x += 43
+            if (secs/60) == 3:
+                x += 40
                 y_txt += 5
 
             if x >= 900:
@@ -77,17 +81,23 @@ def introduçao():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        pygame.mixer.music.stop()
+                        argument = False
 
             screen.blit(pygame.Surface(screen.get_size()), (0, 0), )
             screen.blit(pygame_logo, (x, 100))
 
-            if x <= 285:
-                x += 43
+            if x <= 200:
+                x += 40
 
-            if x >= 285 and secs == 0:
-                secs = cronometro(3)
-            if secs == 3:
-                x += 43
+            if x >= 200 and secs < 180:
+                secs += 1
+
+            if (secs / 60) == 3:
+                x += 40
+
             if x >= 900:
                 argument = False
 
@@ -98,6 +108,7 @@ def introduçao():
 
         pygame.mixer.music.load('audios/cutsceneaudio.ogg')
         pygame.mixer.music.play()
+
 
         background_name = 'imagens/bg_scene.png'
         background = pygame.image.load(background_name).convert()
@@ -137,6 +148,11 @@ def introduçao():
             for event in pygame.event.get():
                 if event.type == QUIT:
                     exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        pygame.mixer.music.stop()
+                        argument = False
+
             screen.blit(pygame.Surface(screen.get_size()), (0, 0),)
             screen.blit(background, (0, y_bg))
             screen.blit(ship, (416, y))
@@ -162,13 +178,13 @@ def introduçao():
                 y3 -= 0.40
 
             if y_bg <= 200:
-                y_bg += 40
+                y_bg += 50
 
             if y_bg >= 200 and c < 2:
                 y_bg = -6000
                 c += 1
 
-            if y < -3001.3000000000134:
+            if y < -2500:
                 argument = False
 
             time_passed = clock.tick(60)

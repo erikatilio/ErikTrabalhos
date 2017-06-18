@@ -1,4 +1,3 @@
-
 import pygame
 from animacoes import *
 from cronometro import *
@@ -23,6 +22,7 @@ def menu():
     fonte_play = pygame.font.Font(fonte_name, 20)
     fonte_intrucao = pygame.font.Font(fonte_name, 20)
     fonte_credito = pygame.font.Font(fonte_name, 20)
+    fonte_logo = pygame.font.Font(fonte_name, 10)
     fonte_quit = pygame.font.Font(fonte_name, 20)
 
     #musica
@@ -62,6 +62,7 @@ def menu():
                     if mouse[0] <= 430 and mouse[1] <= 320:
                         instrucoes()
 
+
     #adicionando fontes
 
         tela.fill(cor_preto)
@@ -75,18 +76,26 @@ def menu():
         text4 = fonte_intrucao.render('Instrucoes', 1, (cor_amarela))
         text5 = fonte_credito.render('Creditos', 1, (cor_amarela))
         text6 = fonte_quit.render('Sair', 1, (cor_amarela))
+        text_logo = fonte_logo.render('COMMIT GROUP 2017 ', 1, (cor_amarela))
+
 
         tela.blit(text_shade, (348, 98))
         tela.blit(text, (350, 100))
         tela.blit(text2_shade, (288, 158))
         tela.blit(text2,(290, 160))
         tela.blit(edtitle, (278, 210))
+        tela.blit(text_logo, (760, 390))
         tela.blit(text3,(210, 300))
         tela.blit(text4,(310, 300))
         tela.blit(text5,(475, 300))
         tela.blit(text6,(620, 300))
-        y_bg -= 0.15
-    #variavel para pegar a posicao do cursor
+        y_bg -= 0.05
+        if y_bg < -1600:
+            pygame.mixer.music.stop()
+            introduçao()
+            y_bg = 0
+
+            #variavel para pegar a posicao do cursor
         mouse = pygame.mouse.get_pos()
 
     #variavel para atualizar o display

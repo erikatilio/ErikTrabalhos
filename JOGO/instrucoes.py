@@ -2,6 +2,7 @@ import pygame
 from pygame import *
 from animacoes import *
 
+
 def instrucoes():
     pygame.init()
     tela = pygame.display.set_mode([900, 400])
@@ -26,10 +27,11 @@ def instrucoes():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
+
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_BACKSPACE:
+                if event.key == pygame.K_SPACE:
+
                     Sair = True
-                    break
 
         tela.fill(BLACK)
         tela.blit(background, (0, y_bg))
@@ -41,7 +43,7 @@ def instrucoes():
         text1_shade = textfont.render("> Atirar = Espaco", True, BLUE)
         text2 = textfont.render("> Se voce for muito ruim, aperte Alt + F4 ;)", True, WHITE)
         text2_shade = textfont.render("> Se voce for muito ruim, aperte Alt + F4 ;)", True, BLUE)
-        text_sair = textfont.render("Pressione Backspace para voltar ao menu", True, WHITE)
+        text_sair = textfont.render("Pressione espaco para voltar ao menu", True, WHITE)
 
         tela.blit(title_shade, (18, 8))
         tela.blit(title, (20, 10))
