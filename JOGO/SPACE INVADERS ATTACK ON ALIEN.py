@@ -764,7 +764,7 @@ def continuar():
         tela.blit(text2, (100, 160))
         tela.blit(text3, (number_x, 220))
 
-        frame += 1
+        frame +=  1
         y_bg -= 0.5
         if frame == 100:
             x = str(int(x) - 1)
@@ -780,5 +780,6 @@ def continuar():
         time_passed = clock.tick(60)
     pygame.quit()
 
+loading()
+introduçao()
 menu()
-
