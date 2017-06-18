@@ -444,13 +444,87 @@ def menu():
         pygame.display.update()
     pygame.quit()
 
+
+# ---------------------------------------------------------------CONTINUE-----------------------------------------------
+def continuar():
+
+    pygame.init()
+    tela = pygame.display.set_mode([900, 400])
+    pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
+    pygame.font.init()
+
+    clock = pygame.time.Clock()
+
+    # BackGround
+    background_name = 'imagens/background_title.png'
+    background = pygame.image.load(background_name).convert()
+    y_bg = 0
+
+    # fontes
+    fonte_name = 'fonte/cosmic.ttf'
+    fonte_gover = pygame.font.Font(fonte_name, 55)
+    fonte_continue = pygame.font.Font(fonte_name, 55)
+    fonte_number = pygame.font.Font(fonte_name, 80)
+
+    # musica
+    music = 'audios/menu_theme.ogg'
+    pygame.mixer.music.load(music)
+    pygame.mixer.music.stop()
+    # cores
+    cor_branco = (255, 255, 255)
+    cor_preto = (0, 0, 0)
+    cor_amarela = (255, 255, 000)
+    sair = False
+
+    # while para funcoes
+    x = "10"
+    frame = 0
+    secs = 0
+    number_x = 400
+    while sair != True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sair = True
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    game()
+
+
+        # adicionando fontes
+
+        tela.fill(cor_preto)
+        tela.blit(background, (0, y_bg))
+        text = fonte_gover.render('GAME OVER CHAMPS', 1, (cor_amarela))
+        text2 = fonte_continue.render('TENTAR NOVAMENTE?', 1, (cor_amarela))
+        text3 = fonte_number.render(x, 1, (cor_amarela))
+
+        tela.blit(text, (120, 100))
+        tela.blit(text2, (100, 160))
+        tela.blit(text3, (number_x, 220))
+
+        frame +=  1
+        y_bg -= 0.5
+        if frame == 100:
+            x = str(int(x) - 1)
+            frame = 0
+            if number_x == 400:
+                number_x += 25
+
+        if int(x) == 0:
+            menu()
+
+        # variavel para atualizar o display
+        pygame.display.update()
+        time_passed = clock.tick(60)
+    pygame.quit()
+
 # -----------------------------------------------JOGO-------------------------------------------------------------------
 
 def game():
     altura = 400
     largura = 900
     listaInimigos = []
-
 
     def reiniciar(tecla,comando):
         if tecla and KMOD_CTRL:
@@ -601,7 +675,6 @@ def game():
             superficie.blit(self.imagemNave, self.rect)
 
     def carregarInimigos():
-
         posx = 100
         for x in range(1,5):
             invasor = inimigo(posx,100,50,"imagens/alien01.png","imagens/alien01(2).png")
@@ -697,88 +770,14 @@ def game():
                                     if x.rect.colliderect(disparo.rect):
                                         jogador.lista_disparo.remove(disparo)
                                         invasor.lista_disparoInimigo.remove(x)
-                pygame.display.update()
-
             if jogando == False:
                 audio.stop()
                 continuar()
 
-    pygame.quit()
+            pygame.display.flip()
+        pygame.quit()
+
     jogo()
-
-# ---------------------------------------------------------------CONTINUE-----------------------------------------------
-def continuar():
-
-    pygame.init()
-    tela = pygame.display.set_mode([900, 400])
-    pygame.display.set_caption("SPACE INVADERS: Attack on Aliens Edition")
-    pygame.font.init()
-
-    clock = pygame.time.Clock()
-
-    # BackGround
-    background_name = 'imagens/background_title.png'
-    background = pygame.image.load(background_name).convert()
-    y_bg = 0
-
-    # fontes
-    fonte_name = 'fonte/cosmic.ttf'
-    fonte_gover = pygame.font.Font(fonte_name, 55)
-    fonte_continue = pygame.font.Font(fonte_name, 55)
-    fonte_number = pygame.font.Font(fonte_name, 80)
-
-    # musica
-    music = 'audios/menu_theme.ogg'
-    pygame.mixer.music.load(music)
-    pygame.mixer.music.stop()
-    # cores
-    cor_branco = (255, 255, 255)
-    cor_preto = (0, 0, 0)
-    cor_amarela = (255, 255, 000)
-    sair = False
-
-    # while para funcoes
-    x = "10"
-    frame = 0
-    secs = 0
-    number_x = 400
-    while sair != True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sair = True
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    game()
-
-
-        # adicionando fontes
-
-        tela.fill(cor_preto)
-        tela.blit(background, (0, y_bg))
-        text = fonte_gover.render('GAME OVER CHAMPS', 1, (cor_amarela))
-        text2 = fonte_continue.render('TENTAR NOVAMENTE?', 1, (cor_amarela))
-        text3 = fonte_number.render(x, 1, (cor_amarela))
-
-        tela.blit(text, (120, 100))
-        tela.blit(text2, (100, 160))
-        tela.blit(text3, (number_x, 220))
-
-        frame +=  1
-        y_bg -= 0.5
-        if frame == 100:
-            x = str(int(x) - 1)
-            frame = 0
-            if number_x == 400:
-                number_x += 25
-
-        if int(x) == 0:
-            menu()
-
-        # variavel para atualizar o display
-        pygame.display.update()
-        time_passed = clock.tick(60)
-    pygame.quit()
 
 loading()
 introduçao()
