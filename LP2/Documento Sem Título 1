@@ -1,0 +1,1945 @@
+
+Questão 8:
+
+algoritmo "Calculadora"
+
+var
+
+numero1:inteiro
+numero2:inteiro
+operaçao:inteiro
+resultado:real
+
+inicio
+
+escreval("Digite um número")
+leia(numero1)
+
+escreval("Digite um segundo número")
+leia(numero2)
+
+escreval("Informe a operação a ser realizada")
+escreval("1-Adição//2-Subtração//3-Divisão//4-Multiplicação//5-sair")
+leia(operaçao)
+
+escolha operaçao
+caso 1
+resultado = numero1+numero2
+escreval("O resultado é", resultado)
+fimescolha
+
+caso 2
+resultado = numero1 - numero2
+escreval("O resultado é", resultado)
+fimescolha
+
+caso 3
+resultado = numero1/numero2
+escreval("O resultado é", resultado)
+fimescolha
+
+caso 4
+resultado = numero1*numero2
+escreval("O resultado é", resultado)
+fimescolha
+
+outrocaso
+escreval("Fim da operação")
+fimescolha
+
+fimalgoritmo
+
+................................................................................................................................................
+Programa em C:
+
+#include <stdio.h>
+
+int main(){
+int a,b,op,r;
+
+printf("Informe um número:\n");
+scanf("%d",&a);
+printf("Informe um outro número:\n");
+scanf("%d",&b);
+
+printf("Escolha a operação(1-adição/2-subtração/3-divisão/4-multiplicação):\n");
+scanf("%d",&op);
+
+switch( op )
+{
+    case 1:
+    r = a+b;
+    printf("Adição:%d\n",r);
+    break;
+
+    case 2:
+    r = a-b;
+    printf("Subtração:%d\n",r);
+    break;
+
+    case 3:
+    r = a/b;
+    printf("Divisão:%d\n",r);
+    break;
+
+    case 4:
+    r = a*b;
+    printf("Multiplicação:%d\n",r);
+    break;
+
+    default :
+    printf("Você digitou uma operação errada!");
+    break;
+
+}
+
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 9:
+
+Avalie cada uma das expressões abaixo.
+
+9.1.(-(-9) + sqrt((-9)*(-9) - 4*3*6))/(2*3).
+r = 2
+sqrt = raiz quadrada
+* = multiplicação
+/ = divisão
+
+9.2.((pow(3, 2) == 9) && (acos(0) == 0)) || (4 % 8 == 3).
+pow = potência(base,expoente)
+% = resto da divisão de a por b
+== = igualdade
+&& = operador lógico 'e' em C
+|| = operador lógico 'ou' em C
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Questão 10:
+
+10.1)
+
+algoritmo "Conversor"
+
+fah:real
+cel:inteiro
+
+inicio
+
+escreval("Digite a temperatura em fahrenheit")
+leia(fah)
+
+cel = (fah - 32)*5/9
+
+escreval("A temperatura em Celsius é =",cel)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+
+int main(){
+float fah;
+int cel;
+
+printf("Informe a temperatura em Fahrenheit:\n");
+scanf("%f",&fah);
+
+cel = (fah - 32)*5/9;
+
+printf("A temperatura em  celcius é = %d \n",cel);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+10.2)
+
+algoritmo "Inversor"
+
+var
+
+Numero, Numero2, dez, cent, unid:inteiro
+
+inicio
+
+escreval(“ Digite um número de 3 algarismo“)
+leia(Numero)
+
+cent = DIV(Numero,100)
+dez = (DIV(Numero,100) MOD 100
+unid = Numero MOD 10
+Numero2 = unid*100+dez*10+cent
+
+escreval(“O inverso é %d”, Numero2)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+long numero,numero2 = 0,aux,aux2;
+
+printf("Digite um número com 3 algorismos: \n");
+scanf("%d",&numero);
+aux = numero;
+
+for(;numero > 0;){
+aux2 = numero%10;
+numero2 = (numero2 * 10)+aux2;
+numero/=10;
+}
+
+printf("O inverso é = %d\n",numero2);
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+10.3)
+
+algoritmo "soma de frações"
+
+var
+
+inicio
+
+num1,den1,num2,den2,resultado,mmc,mmc1,mmc2:inteiro
+
+escreval("Informe o numerador da fração1")
+leia(num1)
+escreval("Informe o denominador da fração1")
+leia(den1)
+
+escreval("Informe o numerador da fração2")
+leia(num2)
+escreval("Informe o denominador da fração2")
+leia(den2)
+
+mmc0 = mmc(den1,den2)
+mmc1 = (mmc/den1)*num1
+mmc2 = (mmc/den2)*num2
+
+resultado = (mmc1+mmc2)
+
+escreval("O resultado é = %d",resultado,"/%d",mmc0)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+
+int main(){
+
+int den1,den2,num1,num2,mmc0,mmc1,mmc2,resultado;
+
+printf("Informe o numerador da fração1:\n");
+scanf("%d",&num1);
+printf("Informe o denominador da fração1:\n");
+scanf("%d",&den1);
+
+printf("Informe o numerador da fração2:\n");
+scanf("%d",&num2);
+printf("Informe o denominador da fração2:\n");
+scanf("%d",&den2);
+
+mmc0 = mmc(den1,den2);
+mmc1 = (den1/mmc0)*num1;
+mmc2 = (den2/mmc0)*num2;
+
+resultado = mmc1+mmc2;
+
+printf("%d \n",mmc0);
+printf("A soma é = %d / %d",resultado,mmc0);
+
+return 0;
+}
+
+int mmc(int den1, int den2){
+int a = den1;
+int b = den2;
+int resto = 0;
+
+while(resto!=0){
+resto = a % b;
+a  = b;
+b  = resto;
+}
+return (den1 * den2) / a;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+10.4)
+
+algoritmo "MMC"
+
+var
+num1,num2,aux:inteiro
+
+inicio
+
+escreval("digite um numero")
+leia(num1)
+escreval("digite outro numero")
+leia(num2)
+
+se [num2 == num1 - (num1 % num2)]
+faz[ escreval("O resultado é:%d", num2)]
+fimse
+
+se não [escreval("Sem múltiplos menores que %d",num2)]
+fimsenao
+
+fimagoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+
+int main(){
+int num1,num2,aux;
+
+printf("Digite um número:\n");
+scanf("%d",&num1);
+
+printf("Digite um outro número:\n");
+scanf("%d",&num2);
+
+if (num2 == num1 - (num1 % num2)){
+printf("O resultado é:\n",num2);
+}
+else{
+printf("Sem múltiplos menores que: %d \n",num2);
+}
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+10.5)
+
+algoritmo "poligono"
+
+var
+
+pol,raio,resultado:inteiro
+
+inicio
+
+escreval("Informe a quantidade de lados do poligono: ")
+leia(pol)
+escreval("Informe o raio da circunferencia: ")
+leia(raio)
+
+escolha pol
+
+caso 3
+
+resultado = 3*(raio*(sqrt(3))
+escreval("O perimetro é = %d",resultado)
+fimescolha
+
+caso 4
+
+resultado = 4*(raio*(sqrt(2))
+escreval("O perimetro é = %d",resultado)
+fimescolha
+
+outro caso
+resultado = (pol*raio)
+escreval("O perimetro é = %d",resultado)
+fimescolha
+
+fimalgoritmo
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+int pol;
+float raio,resultado,aux;
+
+printf("Informe a quantidade de lados do poligono:\n");
+scanf("%i",&pol);
+printf("Informe o raio da circunferencia:\n");
+scanf("%f",&raio);
+
+aux = pol;
+
+if(pol == 3){
+resultado = 3*(raio*(sqrt(3)));
+printf("O perimetro é = %0.2f \n",resultado);
+}
+
+if(pol == 4){
+resultado = 4*(raio*(sqrt(2)));
+printf("O perimetro é = %0.2f \n",resultado);
+}
+
+if(pol >= 5){
+resultado = (aux*raio);
+printf("O perimetro é = %0.2f \n",resultado);
+}
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 11:
+
+algoritmo "permute"
+
+var
+a,b:inteiro
+
+inicio
+
+escreval("Informe a: ")
+leia(a)
+escreval("Informe b: ")
+leia(b)
+
+escreval(a,b)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int a,b;
+
+printf("Informe a:\n");
+scanf("%d",&a);
+
+printf("Informe b:\n");
+scanf("%d",&b);
+
+printf("%d%d",a,b);
+
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 12:
+
+algoritmo "prestação'
+
+var
+
+pord,entrada,par1,par2,aux:real
+
+inicio
+
+escreval("Qual o valor do produto?")
+leia(prod)
+
+escreval("Qual o valor da entrada?")
+leia(entrada)
+
+aux = prod - entrada
+
+par1 = aux/2
+
+
+escreval("As prestações a pagar são: ",par1)
+
+fimagoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int p1,p2;
+float entrada,valor;
+
+
+printf("Informe o valor do produto:\n");
+scanf("%f",&valor);
+
+p1 = valor/3;
+p2 = p1;
+entrada = valor - (p1+p2);
+
+printf("Entrada = %.2f prestações = %d e %d \n",entrada,p1,p2);
+
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 13:
+
+algoritmo "Converosr de segundos"
+
+var
+entrada:inteiro
+h,m,s:real
+
+inicio
+
+escreval("Entre com os segundos: ")
+leia(entrada)
+
+h = entrada div 3600
+m = (entrada mod 3600)/60
+s = (entrada mod 3600)mod 60
+escreval(h ," : ",m," : ",s)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int entrada;
+int h,m,s;
+
+printf("Informe o tempo em segundos:\n");
+scanf("%d",&entrada);
+
+h = entrada/3600;
+m = (entrada/60)%60;
+s = entrada%60;
+
+printf("%d h; %d ; %d ",h,m,s);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 14:
+
+algoritmo "Conversor de minutos"
+
+var
+entrada:inteiro
+h,m,s:real
+
+inicio
+
+escreval("Entre com os minutos: ")
+leia(entrada)
+
+h = entrada/60
+m = (entrada mod 3600)/60
+s = entrada*60
+escreval(h ," : ",m," : ",s)
+
+fimalgoritmo
+................................................................................................................................................
+programa em C:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int entrada;
+int h,m,s;
+
+printf("Informe o tempo em minutos:\n");
+scanf("%d",&entrada);
+
+h = entrada/60;
+m = (entrada%60)/60;
+s = entrada%60;
+
+printf("%d h; %d ; %d ",h,m,s);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questao 15:
+
+algoritmo "Caixa eletronico"
+
+var
+
+valor,qtd50,qtd10,qtd5,qtd1 = 0,resto50 = 0,resto10 = 0,resto5 = 0:inteiro
+
+inicio
+
+escreval("Informe o valor")
+leia(valor)
+
+qtd50   = (valor / 50)
+resto50 = (valor-(qtd50*50))  
+qtd10   = (resto50 / 10) 
+resto10 = (valor-(qtd10*10)-(qtd50*50)) 
+qtd5    = (resto10 / 5) 
+resto5  = (valor-(qtd10*10)-(qtd50*50)-(qtd5*5)) 
+qtd1    = (resto5 /1) 
+
+
+escreval("Notas de 50:",qtd50)
+escreval("Notas de 10:",qtd10)
+escreval("Notas de 5:",qtd5)
+escreval("Notas de 1:",qtd1)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int valor,qtd50,qtd10,qtd5,qtd1 = 0,resto50 = 0,resto10 = 0,resto5 = 0;
+
+printf("Informe um valor:\n");
+scanf("%d",&valor);
+
+qtd50   = (valor / 50);
+resto50 = (valor-(qtd50*50));
+qtd10   = (resto50 / 10);
+resto10 = (valor-(qtd10*10)-(qtd50*50));
+qtd5    = (resto10 / 5);
+resto5  = (valor-(qtd10*10)-(qtd50*50)-(qtd5*5));
+qtd1    = (resto5 /1);
+
+printf("Notas de 50: %d\n",qtd50);
+printf("Notas de 10: %d\n",qtd10);
+printf("Notas de 5: %d\n",qtd5);
+printf("Notas de 1: %d\n",qtd1);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 16:
+
+algoritmo"Prestaçoes"
+
+var
+p,f,i,:real
+n:inteiro
+
+inicio
+
+escreval("Informe o valor financeiro: ")
+leia(f)
+escreval("Informe o numero de prestações: ")
+leia(n)
+escreval("Informe o juros: ")
+leia(i)
+
+p = (f/n)+i
+
+escreval("O valor das prestações é =",p)
+
+fimagoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(){
+float valor,f,i;
+int n;
+
+printf("Informe o valor finançeiro:\n");
+scanf("%f",&f);
+printf("Informe o número de prestação:\n");
+scanf("%i",&n);
+printf("Informe o juros:\n");
+scanf("%f",&i);
+
+valor = (f/n)+i;
+
+printf("O valor das prestações é = %.2f \n",valor);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 17:
+
+algoritmo"Arredondar"
+
+var
+n:real
+aux:inteiro
+
+inicio
+
+escreval("Informe o numero: ")
+leia(n)
+
+aux = (int)(n + 0.5)
+
+escreval("O numero arrendondado é =", aux)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(){
+float a;
+
+printf("Informe um numero: \n");
+scanf("%f",&a);
+
+int b = (int)(a + 0.5);
+
+printf("%i \n",b);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 18:
+
+algoritmo"Quadrado perfeito"
+
+var
+a,b,c,i:inteiro
+R;lógico
+
+inicio
+
+escreval("Informe um numero: ")
+leia(a)
+
+R = Falso
+Se a>0 então
+Para i de 1 ate a passo 1 faca
+c<-i*i
+Se c == a então
+escreval("O número é um quadrado perfeito")
+R = Verdadeiro
+fimse
+fimpara
+Se R = Falso então
+escreval("O número não é um quadrado perfeito")
+fimse
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(){
+int a,b,c,i,r;
+
+printf("Informe um numero: \n");
+scanf("%d",&a);
+
+r = 1;
+
+if(a > 0){
+for(i = 0;i <= a;i++){
+c = i*i;
+if(c == a){
+printf("O número é um quadrado perfeito\n");
+r = 0;
+}
+
+}
+if(r == 1){
+printf("O número não é um quadrado perfeito\n");
+}
+}
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questao 19:
+
+var
+a,b,c,maior:real
+
+inicio
+
+escreval("Informe a:")
+leia(a)
+escreval("Informe b:")
+leia(b)
+escreval("Informe c:")
+leia(c)
+
+se (a > b) então
+maior = a
+fimse
+
+senão
+maior = b
+fimsenão
+
+se (maior < c) então
+maior = c
+fimse
+
+escreval("O maior é %d",maior)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+float a,b,c,maior;
+
+printf("Informe a:\n");
+scanf("%f",&a);
+
+printf("Informe b:\n");
+scanf("%f",&b);
+
+printf("Informe c:\n");
+scanf("%f",&c);
+
+if(a > b){
+maior = a;
+}
+else{
+maior = b;
+}
+if(maior < c){
+maior = c;
+}
+
+printf("O maior é %.1f",maior);
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 20:
+
+algoritmo"Triangulo tipo"
+
+var
+a,b,c,ver:inteiro
+
+inicio
+
+escreval("Informe a:")
+leia(a)
+escreval("Informe b:")
+leia(b)
+escreval("Informe c:")
+leia(c)
+
+ver = 0
+
+enquanto(ver != 1) faça
+se [a = b e b = c e a = c]
+faz[ escreval("Equilatero")]
+fimse
+
+se [a = b ou b = c ou c = a]
+faz[ escreval("Isolcéles")]
+fimse
+
+se [ a != b e b != c e c != a]
+faz[ escreval("Escaleno")]
+fimse
+
+senão [ escreval("Não forma um triangulo")]
+fimsenao
+
+fimenquanto
+
+fimalgoritmo
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int a,b,c,ver;
+
+printf("Informe a:\n");
+scanf("%d",&a);
+
+printf("Informe b:\n");
+scanf("%d",&b);
+
+printf("Informe c:\n");
+scanf("%d",&c);
+
+ver = 0;
+
+while(ver != 1){
+if(a==b && a==c && c==b){
+printf("Equilátero\n");
+break;
+}
+if(a==b || b==c || a==c){
+printf("Isocéles\n");
+break;
+}
+if(a!=b && b!=c && a!=c){
+printf("Escaleno\n");
+break;
+}
+}
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 21:
+
+algoritmo"Triangulo Retangulo"
+
+var
+a,b,c:inteiro
+
+inicio
+
+escreval("Informe hipotenusa:")
+leia(a)
+escreval("Informe Cateto oposto:")
+leia(b)
+escreval("Informe Cateto adjacente:")
+leia(c)
+
+se [ a == (b**2)+(c**2) ]
+faz [ escreval(É retangulo")]
+fimse
+
+senão[escreval("não é retangulo")]
+fimsenao
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(){
+int hip,cto,cta;
+
+printf("Informe a hipotenusa:\n");
+scanf("%d",&hip);
+
+printf("Informe o cateto oposto:\n");
+scanf("%d",&cto);
+
+printf("Informe o cateto adjacente:\n");
+scanf("%d",&cta);
+
+if(pow(hip,2) == pow(cto,2) + pow(cta,2)){
+printf("É triângulo retângulo\n");
+}
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 22:
+
+algoritmo"Equação"
+
+var
+a,b,c,delta,raiz1,raiz2:inteiro
+
+inicio
+
+escreval("Informe a:")
+leia(a)
+escreval("Informe b:")
+leia(b)
+escreval("Informe c:")
+leia(c)
+
+delta = (b**2) - 4*a*c
+
+raiz1 = (b + sqrt(delta))/2*a
+raiz2 = (- b + sqrt(delta))/2*a
+
+escreval("x1: ",raiz1," e x2:",raiz2)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main(){
+int a,b,c,delta,x1,x2;
+
+printf("Informe a:\n");
+scanf("%d",&a);
+
+printf("Informe b:\n");
+scanf("%d",&b);
+
+printf("Informe c:\n");
+scanf("%d",&c);
+
+delta = (pow(b,2) - 4*a*c);
+
+if(delta > 0){
+x1 = ((b + sqrt(delta))/2*a);
+x2 = ((-b + sqrt(delta))/2*a);
+
+printf("x1 = %d , x2 = %d\n",x1,x2);
+}
+else{
+printf("Não existe\n");
+}
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 23:
+
+algoritmo"Idade"
+
+var
+dia1,mes1,ano1,dia2,mes2,ano2,idade,meses,dias:inteiro
+
+inicio
+
+escreval("Informe sua data de nascimento conforme dd/mm/aa:\n")
+leia("%d%d%d",dia1,mes1,ano1)
+escreval("Informe a data atual conforme dd/mm/aa:\n")
+leia("%d%d%d",dia2,mes2,ano2)
+
+se (mes1 > mes2) ou ((mes1 == mes2) e (dia1 > dia2)) então
+idade = ano2 - ano1 - 1
+fimse
+senão
+idade = ano2 - ano1
+fimsenão
+
+meses = idade*12
+dias = dia + (meses * 30) + (idade * 365)
+
+escreval("Você tem %d em anos, %d em meses e %d em dias.",idade,meses,dias)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+int dia1,mes1,ano1,dia2,mes2,ano2,idade,meses,dias;
+
+printf("Informe sua data de nascimento conforme dd/mm/aa:\n");
+scanf("%d%d%d",&dia1,&mes1,&ano1);
+
+printf("Informe a data atual conforme dd/mm/aa:\n");
+scanf("%d%d%d",&dia2,&mes2,&ano2);
+
+if ((mes1 > mes2) || ((mes1 == mes2) && (dia1 > dia2))){
+idade = ano2 - ano1 - 1;
+}
+else{
+idade = ano2 - ano1;
+}
+
+meses = idade*12;
+dias = dia1 + (meses * 30) + (idade * 365);
+
+
+printf("Você tem %d em anos, %d em meses e %d em dias.\n",idade,meses,dias);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 24:
+
+algoritmo"Nota"
+
+var
+nota1,nota2,nota3,media:real
+
+inicio
+
+escrval("Informe nota1")
+leia(nota1)
+escrval("Informe nota2")
+leia(nota2)
+
+media = (nota1+nota2)/2.0
+
+se [media < 7.0]
+faz [escreval("Sua media e",media)
+nota3 = 6.0 - media
+media = 6.0 + nota3
+escreval("Você precisa de",media)]
+fimse
+
+senão [ escreval("Passou direto")]
+fimsenão
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+float nota1,nota2,nota3,media;
+
+printf("Informe sua AP1: \n");
+scanf("%f",&nota1);
+printf("Informe sua AP2: \n");
+scanf("%f",&nota2);
+
+media = (nota1+nota2)/2.0;
+
+if(media < 7.0){
+printf("Sua média é %.1f.\n",media);
+nota3 = 6.0 - media;
+media = 6.0 + nota3;
+printf("Você precisa de %.1f para passar na PF.\n",media);
+}
+else{
+printf("Passou direto\n");
+}
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 25:
+
+escrito corretamente:
+5
+15
+45
+4
+12
+36
+3
+9
+27
+2
+6
+18
+1
+3
+9
+
+na forma do exemplo:
+erro de syntax
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 26:
+
+algoritmo"quadrado de n numeros"
+
+var
+num,soma,n:inteiro
+
+inicio
+
+escreval("Digite um numero")
+leia(num)
+n = 0
+soma = 0
+
+para n ate num faça
+soma = soma + (n**2)
+fimpara
+
+escreval("A soma é = ",soma)
+
+fimalgoritmo
+................................................................................................................................................
+programa em C:
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int num,soma,n;
+
+printf("Digite um numero: \n");
+scanf("%d",&num);
+soma = 0;
+
+for(n = 0;n<num;n++){
+soma = soma + pow(n,2);
+}
+
+printf("A soma é = %d",soma);
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 27:
+
+algoritmo"Soma das sequencias"
+
+27.1)
+
+var
+num,den,n,soma:inteiro
+
+inicio
+
+escreval("Até qual termo você quer?:")
+leia(n)
+soma = 0.5
+
+para 0 ate n faça
+soma = soma + (0.66)
+fimpara
+
+escreval("A soma é = ",soma)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int num,den,n;
+float soma;
+
+printf("Até qual termo você quer?: \n");
+scanf("%d",&n);
+soma = 0.5;
+
+int i;
+for(i = 1;i<n;i++){
+soma = soma + 0.66;
+}
+
+printf("A soma é = %.2f \n",soma);
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+algoritmo"Soma das sequencias 2"
+
+27.2)
+
+var
+num,n,soma:inteiro
+
+inicio
+
+escreval("Até qual termo você quer?:")
+leia(n)
+
+soma = 1
+num = 1
+i = 1;
+para i ate n faça
+se i%2 == 0 faz
+soma = soma + (1.0/num)
+num = num + 1
+i+= 1
+fimse
+
+senão
+soma = soma + (1.0/num)(-1)
+num = num + 1
+i+= 1
+fimsenao
+
+fimpara
+
+escreva("A soma é =",soma)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+
+int main(){
+int num,n;
+float soma;
+
+printf("Até qual termo você quer?:\n");
+scanf("%d",&n);
+
+soma = 1.0;
+num = 2;
+
+int i;
+for(i = 1;i<=n;i++){
+if(i%2 == 0){
+soma = soma + (1.0/num);
+num = num + 1;
+}else
+soma = soma + (1.0/num)*(-1);
+num = num + 1;
+}
+
+printf("A soma é = %.1f ",soma);
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 28:
+
+algoritmo"MMC"
+
+var
+x, y, i, Mmc:inteiro
+
+inicio
+
+escreval("Digite o numero")
+leia(x)
+escreval("Digite o numero")
+leia(y)
+
+se[ x > y]
+faz [
+Mmc = x;
+enquanto [Mmc % y != 0]
+faz[
+Mmc = Mmc + x]
+fimenquanto
+escreval("mmc", x, y, Mmc)]
+fimse
+
+
+se[ x < y]
+faz [
+Mmc = y;
+enquanto [Mmc % x != 0]
+faz[
+Mmc = Mmc + y]
+fimenquanto
+escreval("mmc", x, y, Mmc)]
+fimse
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int x,y,i,mmc;
+
+printf("Digite o numero:\n");
+scanf("%d",&x);
+printf("Digite o numero:\n");
+scanf("%d",&y);
+
+if(x>y){
+
+mmc = x;
+while(mmc%y!=0){
+mmc = mmc + x;
+}
+printf("MMC de %d e %d é %d",x,y,mmc);
+}else{
+mmc = y;
+while(mmc%x!=0){
+mmc = mmc + y;
+}
+printf("MMC de %d e %d é %d",x,y,mmc);
+}
+}
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 29:
+
+algoritmo"Numero perfeito"
+
+var
+i,numero, soma:inteiro
+
+escreval("Informe um numero:")
+leia(num)
+
+i = 1
+para i ate numero faça
+se numero % i == 0 entao
+soma+=i
+fimse
+fimpara
+
+se [soma = numero)]
+entao[ escreval("Perfeito")]
+senao[ escreval("Não perfeito")]
+fimse
+fimpara
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+
+int main(){
+int num,soma=0,aux;
+
+printf("informe um numero: ");
+scanf("%d", &num);
+for (aux=1;aux < num; aux++){
+if (num%aux==0){
+soma=soma+aux;}
+}
+if (num==soma){
+printf("O numero %d eh perfeito\n",num);
+}
+else{
+printf("O numero %d nao eh perfeito\n",num);
+}
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 30:
+
+algoritmo"Numero"
+
+var
+i, num, prin, seg;inteiro
+
+i = 1000
+para i ate 9999 faça
+prin= (i/100)
+seg= i%100
+
+se((prin+seg) * (prin+seg)==i)então
+escreval("\no numero %d possui a mesma caracteristica que 3025. ",i)
+fimse
+fimpara
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+# include <stdio.h>
+
+int main(){
+int i, num, prin, seg;
+
+for (i=1000; i<=9999; i++){
+prin= (i/100);
+seg= i%100;
+
+if((prin+seg) * (prin+seg)==i){
+printf ("\no numero %d possui a mesma caracteristica que 3025. ",i);
+}
+}
+getchar();
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 31:
+
+algoritmo"Inverte numero"
+
+var
+i, j, i_inv, j_inv:inteiro
+
+inicio
+
+para i=10 ate 100 faça 
+i_inv = (i % 10) * 10 + i / 10
+fimpara
+
+para j=10 ate 100 faça 
+j_inv = (j % 10) * 10 + j / 10
+se (i*j == i_inv*j_inv)
+então ecreval("%d x %d = %d x %d = %d", i, j, i_inv, j_inv, i*j)
+fimse
+fimpara
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int i, j, i_inv, j_inv;
+
+for(i = 10;i<=100;i++){
+i_inv = (i % 10) * 10 + i / 10;
+for(j = 10;j<=100;j++){
+j_inv = (j % 10) * 10 + j / 10;
+if(i*j == i_inv*j_inv){
+printf("%d x %d = %d x %d = %d \n", i, j, i_inv, j_inv, i*j);
+}
+}
+}
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 33:
+
+algoritmo"Semiprimo"
+
+var
+num,i,j:inteiro
+
+inicio
+
+escreval("Informe um número")
+leia(num)
+
+para i=2 ate i <= num faça
+se ((num%i)==0) então
+escreval("O número é semiprimo")
+i = i + 1
+pare
+senão
+escreval("O número não é semiprimo")
+pare
+fimse
+fimpara
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+int num,i,j;
+
+printf("Informe um número: \n");
+scanf("%d",&num);
+
+for(i = 2;i<=num;i++){
+if((num%i)==0){
+printf("O número é semiprimo.\n");
+break;
+}else{
+printf("O número não é semiprimo.\n");
+break;
+}
+}
+
+return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 35:
+
+algoritmo"Eleição"
+
+var
+voto,candA,candB,nulo,branco,d,fim,final:inteiro
+
+inicio
+
+fim = 0
+candA = 0
+candB = 0
+nulo = 0
+branco = 0
+final = 0
+
+enquanto fim != 1 faça
+escreval("Digite seu voto para seu respectivo candidato(83-Alibabá e 93-Alcapone, caso branco 00):")
+leia(voto)
+escreval("Comfirmar?(sim-1/não-0)")
+leia(d)
+
+enquanto final!= 1 faça
+
+escolha d
+caso 1[
+
+escolha voto
+caso 83
+
+escreval("Voto para Alibabá")
+candA = candA+1
+fimescolha
+fimescolha
+final = 1
+
+caso 93
+escreval("Voto para Alcapone")
+candB = candB+1
+fimescolha
+fimescolha
+final = 1
+
+caso 00
+escreval("Votou em branco")
+branco = branco+1
+fimescolha
+fimescolha
+final = 1
+
+outro caso
+nulo = nulo+1
+fimescolha
+fimescolha
+final = 1
+]
+
+caso 2[
+enquanto d!= 1 faça
+escreval("Digite seu voto para seu respectivo candidato(83-Alibabá e 93-Alcapone, caso branco 00):")
+leia(voto)
+escreval("Comfirmar?(sim-1/não-0)")
+leia(d)
+fimequanto]
+
+escreval("Encerrar eleição?(sim-1/não-0)")
+leia(fim)
+
+fimenquanto
+
+se candA > candB faça
+esreval("Votos nulos %d",nulo)
+esreval("Votos Bancos %d",branco)
+esreval("Vencedor foi Alibabá")
+fimse
+
+se candB > candA faça
+esreval("Votos nulos %d",nulo)
+esreval("Votos Bancos %d",branco)
+esreval("Vencedor foi Alcapone")
+fimse
+
+senão
+escreval("Deu empate, partiu proximo turno kk")
+fimsenão
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(){
+int voto,candA,candB,nulo,branco,d,fim,finall;
+
+fim = 0;
+candA = 0;
+candB = 0;
+nulo = 0;
+branco = 0;
+
+while(fim!=1){
+printf("Digite seu voto para seu respectivo candidato \n Ex:(83-Alibabá e 93-Alcapone, caso branco 00):\n");
+scanf("%d",&voto);
+printf("Comfirmar?(sim-1/não-0): \n");
+scanf("%d",&d);
+
+finall = 0;
+
+while(finall != 1){
+
+switch(d){
+case 1 :
+
+switch(voto){
+case 83 :
+printf("Voto para Alibabá COMFIRMADO. \n");
+candA += 1;
+finall = 1;
+break;
+break;
+
+case 93 :
+printf("Voto para Alcapone COMFIRMADO. \n");
+candB += 1;
+finall = 1;
+break;
+break;
+
+case 00 :
+printf("Votou em branco. \n");
+branco += 1;
+finall = 1;
+break;
+break;
+
+default :
+printf("Voto nulo! \n");
+nulo += 1;
+finall = 1;
+break;
+break;
+
+}
+
+default :
+while(d!= 1){
+printf("Digite seu voto para seu respectivo candidato\n Ex:(83-Alibabá e 93-Alcapone, caso branco 00): \n");
+scanf("%d",&voto);
+printf("Comfirmar?(sim-1/não-0): \n");
+scanf("%d",&d);
+}
+
+}
+
+}
+
+printf("Encerrar eleição?(sim-1/não-0): \n");
+scanf("%d",&fim);
+
+system("clear");
+}
+
+
+if(candA > candB){
+printf("Votos nulos %d \n",nulo);
+printf("Votos Bancos %d \n",branco);
+printf("Vencedor foi Alibabá com %d votos \n",candA);
+}
+else if (candB > candA){
+printf("Votos nulos %d \n",nulo);
+printf("Votos Bancos %d \n",branco);
+printf("Vencedor foi Alcapone com %d votos \n",candB);
+}
+else{
+printf("Deu empate com %d para cada candidato, partiu proximo turno kk \n",candA);
+}
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 36:
+
+algoritmo"fibonacci"
+
+var
+i,n,a,b,x:inteiro
+
+inicio
+
+escreval("Digite um numero ")
+leian(n)
+a = 1
+b = 1
+i = 0
+
+para i até n faça
+se i = 0 ou i = 1 então
+escreval("%d",a)
+
+senão
+x = b
+b = b + a
+a = x
+
+escreval("%d",b)
+
+fimsenão
+fimse
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+int i,n,a,b,x;
+
+printf("Digite um numero : \n");
+scanf("%d",&n);
+a = 1;
+b = 1;
+
+for(i=0;i<n;i++){
+if(i == 0 || i == 1){
+printf("%d\n",a);
+}
+else{
+x = b;
+b += a;
+a = x;
+
+printf("%d\n",b);
+}
+}
+
+
+return 0;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+questão 37:
+
+algoritmo"sequencia harmonica"
+
+var
+k,c,den:inteiro
+menor:real
+
+inicio
+
+
+menor = 0
+den = 1
+
+escreval("Informe a constante")
+leia(k)
+
+c = 1
+enquanto c < k faz
+menor = menor + (1/den)
+den = den + 1
+c = c + 1
+fimenquanto
+
+escreval("%d",menor)
+
+fimalgoritmo
+
+................................................................................................................................................
+programa em C:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+float c,den,menor;
+int k;
+
+menor = 0;
+den = 1;
+
+printf("Informe a constante: \n");
+scanf("%d",&k);
+c = 1;
+while(c < k){
+menor += (1/den);
+den += 1;
+c++;
+}
+
+printf("%.3f",menor);
+
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
