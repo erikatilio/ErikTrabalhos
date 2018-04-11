@@ -3,8 +3,8 @@ package formas;
 public class Retangulo {
 	public int largura, area , comprimento , perimetro;
 	
-	public Retangulo(int largura, int area, int comprimento, int perimetro) {
-		this.largura = largura; this.area = area; this.comprimento = comprimento; this.perimetro = perimetro;
+	public Retangulo(int largura, int comprimento) {
+		this.largura = largura; this.comprimento = comprimento;
 	}
 	
 	public void calcularArea() {

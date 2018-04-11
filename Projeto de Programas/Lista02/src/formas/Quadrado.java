@@ -3,12 +3,12 @@ package formas;
 public class Quadrado {
 	public int lado , area , perimetro;
 	
-	public Quadrado(int lado, int area, int perimetro){
-		this.lado = lado; this.area = area; this.perimetro = perimetro;
+	public Quadrado(int lado){
+		this.lado = lado;
 	}
 	
 	public void calcularArea() {
-		this.area = this.lado*2;
+		this.area = this.lado*this.lado;
 		System.out.println("Area: "+this.area);
 	}
 	public void calcularPerimetro() {
